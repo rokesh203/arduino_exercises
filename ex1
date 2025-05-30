@@ -1,0 +1,27 @@
+// simple exercise with esp32 and ultra sonic sensor 
+
+const int trigPin=27;
+const int echoPin=14;
+long duration;
+int distance_cm;
+int distance_inches;
+void setup(){
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
+}
+void loop(){
+digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+duration = pulseIn(echoPin,HIGH);
+distance_cm = duration * 0.034/2;
+distance_inches = duration * 0.01334/2;
+Serial.print("Distance in cm");
+Serial.println(distance_cm);
+Serial.print("Distance in inches");
+Serial.println(distance_inches);
+
+}
